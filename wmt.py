@@ -11,9 +11,10 @@ class User():
         self.age = age
         self.sex = sex
         
-    def doExer(self,exercise):
+    def doExer(self, exercise):
         print(self.name + " did " + exercise.name + " " + str(exercise.sets) + " x " + str(exercise.reps))
-        
+
+exer_list=[]
         
 class Exercise():
     def __init__(self, name, push, pull, arms, chest, back, core, legs, favorite):
@@ -27,25 +28,85 @@ class Exercise():
         self.legs = legs
         self.favorite = favorite
     
+        
+    #Function to show exercises for Arms    
+    def forArms():
+        for exercise in global exer_list:
+            if exercise.arms == True:
+                return exercise
+            
+    #Function to show exercises for Chest    
+    def forChest():
+        for exercise in exer_list:
+            if exercise.chest == True:
+                return exercise
+    
+    #Function to show exercises for Legs    
+    def forLegs():
+        for exercise in exer_list:
+            if exercise.legs == True:
+                return exercise
+        
+    #Function to show exercises for Back    
+    def forBack():
+        for exercise in exer_list:
+            if exercise.back == True:
+                return exercise
+            
+    #Function to show exercises for Core    
+    def forCore():
+        for exercise in exer_list:
+            if exercise.core == True:
+                return exercise
+    
+    #Function to show exercises for Pulling    
+    def forPull():
+        for exercise in exer_list:
+            if exercise.pull == True:
+                return exercise
+    
+    #Function to show exercises for Pushing   
+    def forPush():
+        for exercise in exer_list:
+            if exercise.push == True:
+                return exercise
+            
+    
+            
+            
 class NonCardio(Exercise):
    def __init__(self, name, push, pull, arms, chest, back, core, legs, favorite, weight, reps, sets):
        super().__init__(name, push, pull, arms, chest, back, core, legs, favorite)
        self.weight = weight
        self.reps = reps
        self.sets = sets
-   
+       
+       base_reps = reps
+       base_weight = weight
+       progress_counter = 1
+       suggest_rep_incr = base_reps * 1.2 * progress_counter
+       suggest_weight_incr = base_weight * 1.2 * progress_counter
+       
+       
 class Cardio(Exercise):
     def __init__(self, distance, duration, cardio):
-        self.distance = distance
-        self.duration = duration
+        #Distance in Miles
+        self.distance = float(distance)
+        #Duration in Minutes
+        self.duration = float(duration)
         self.cardio = cardio
+        self.speed = self.distance/float(self.duration/60)
+        suggest_dist_incr = distance * 1.2 * progress_counter
+        suggest_durat_incr = duration * 1.2 * progress_counter
         
         
         
 user = User('Joe', 72, 185, 24, 'male')
 pushups = NonCardio('pushups', True, False, True, True, False, True, False, False, 0, 15, 3)
 chest_press = NonCardio('chest_press', True, False, True, True, False, False, False, True, 80, 15, 3)
+running = Cardio(3, 60, True)
 
+exer_list = [pushups, chest_press]
 
 # In[2]:
 
