@@ -17,7 +17,7 @@ from customplot import *
 
 
 class exercise():
-   def __init__(self, name, push, pull, arms, chest, back, core, legs, cardio):
+   def __init__(self, name, push, pull, arms, chest, back, core, legs, cardio, favorite):
         self.name = name
         self.push = push
         self.pull = pull
@@ -27,244 +27,263 @@ class exercise():
         self.core = core
         self.legs = legs
         self.cardio = cardio
+        self.favorite = favorite
 
 
 # In[2]:
 
 
-wmt_dict = {'Exercise': {0: 'pushups',
-    1: 'chest press',
-    2: 'bicep curl',
-    3: 'tricep extension',
-    4: 'weighted_row',
-    5: 'chest fly',
-    6: 'treadmill',
-    7: 'stair machine',
-    8: 'elliptical',
-    9: 'squat',
-    10: 'leg curl',
-    11: 'leg extension',
-    12: 'deadlift',
-    13: 'chinup',
-    14: 'plank',
-    15: 'lat pulldown'},
-    'Push': {0: True,
-    1: True,
-    2: False,
-    3: False,
-    4: False,
-    5: True,
-    6: False,
-    7: False,
-    8: False,
-    9: False,
-    10: False,
-    11: True,
-    12: False,
-    13: False,
-    14: False,
-    15: False},
-    'Pull': {0: False,
-    1: False,
-    2: True,
-    3: False,
-    4: True,
-    5: False,
-    6: False,
-    7: False,
-    8: False,
-    9: False,
-    10: True,
-    11: False,
-    12: False,
-    13: True,
-    14: False,
-    15: True},
-    'Arms': {0: True,
-    1: True,
-    2: True,
-    3: False,
-    4: False,
-    5: True,
-    6: False,
-    7: False,
-    8: False,
-    9: False,
-    10: False,
-    11: False,
-    12: False,
-    13: True,
-    14: False,
-    15: True},
-    'Chest': {0: True,
-    1: True,
-    2: False,
-    3: False,
-    4: False,
-    5: True,
-    6: False,
-    7: False,
-    8: False,
-    9: False,
-    10: False,
-    11: False,
-    12: False,
-    13: False,
-    14: False,
-    15: False},
-    'Back': {0: False,
-    1: False,
-    2: False,
-    3: False,
-    4: True,
-    5: False,
-    6: False,
-    7: False,
-    8: False,
-    9: False,
-    10: False,
-    11: False,
-    12: False,
-    13: True,
-    14: False,
-    15: True},
-    'Legs': {0: False,
-    1: False,
-    2: False,
-    3: False,
-    4: False,
-    5: False,
-    6: False,
-    7: False,
-    8: False,
-    9: True,
-    10: True,
-    11: True,
-    12: False,
-    13: False,
-    14: False,
-    15: False},
-    'Core': {0: True,
-    1: False,
-    2: False,
-    3: False,
-    4: False,
-    5: False,
-    6: False,
-    7: False,
-    8: False,
-    9: False,
-    10: False,
-    11: False,
-    12: False,
-    13: True,
-    14: True,
-    15: False},
-    'Cardio': {0: False,
-    1: False,
-    2: False,
-    3: False,
-    4: False,
-    5: False,
-    6: True,
-    7: True,
-    8: True,
-    9: False,
-    10: False,
-    11: False,
-    12: False,
-    13: False,
-    14: False,
-    15: False},
-    'Favorite': {0:False,
-    1:False,
-    2:False,
-    3:False,
-    4:False,
-    5:False,
-    6:False,
-    7:False,
-    8:True,
-    9:False,
-    10:False,
-    11:False,
-    12:False,
-    13:False,
-    14:False,
-    15:False}
-}
+wmt_dict = {'pushup' : {
+    'push':True, 
+    'pull': False,
+    'arms': True,
+    'chest': True,
+    'back': False,
+    'core': True,
+    'legs': False,
+    'cardio': False,
+    'favorite': False
+    },
+    'chest_press': {
+    'push':True, 
+    'pull': False,
+    'arms': True,
+    'chest': True,
+    'back': False,
+    'core': True,
+    'legs': False,
+    'cardio': False,
+    'favorite': True
+    },
+    'bicep_curl': {
+    'push': False, 
+    'pull': False,
+    'arms': True,
+    'chest': True,
+    'back': False,
+    'core': True,
+    'legs': False,
+    'cardio': False,
+    'favorite': False
+    },    
+    'tricep_extension': {
+    'push': True, 
+    'pull': False,
+    'arms': True,
+    'chest': True,
+    'back': False,
+    'core': True,
+    'legs': False,
+    'cardio': False,
+    'favorite': True
+    },
+    'weighted_row': {
+    'push': True, 
+    'pull': False,
+    'arms': True,
+    'chest': True,
+    'back': False,
+    'core': True,
+    'legs': False,
+    'cardio': False,
+    'favorite': True
+    },
+    'chest_fly': {
+    'push': True, 
+    'pull': False,
+    'arms': True,
+    'chest': True,
+    'back': False,
+    'core': True,
+    'legs': False,
+    'cardio': False,
+    'favorite': True
+    },
+    'treadmill': {
+    'push': True, 
+    'pull': False,
+    'arms': True,
+    'chest': True,
+    'back': False,
+    'core': True,
+    'legs': False,
+    'cardio': False,
+    'favorite': True
+    },
+    'stair_machine': {
+    'push': True, 
+    'pull': False,
+    'arms': True,
+    'chest': True,
+    'back': False,
+    'core': True,
+    'legs': False,
+    'cardio': False,
+    'favorite': True
+    },
+    'elliptical': {
+    'push': True, 
+    'pull': False,
+    'arms': True,
+    'chest': True,
+    'back': False,
+    'core': True,
+    'legs': False,
+    'cardio': False,
+    'favorite': True
+    },
+    'bodyweight_squat': {
+    'push': True, 
+    'pull': False,
+    'arms': True,
+    'chest': True,
+    'back': False,
+    'core': True,
+    'legs': False,
+    'cardio': False,
+    'favorite': True
+    },
+    'leg_curl': {
+    'push': True, 
+    'pull': False,
+    'arms': True,
+    'chest': True,
+    'back': False,
+    'core': True,
+    'legs': False,
+    'cardio': False,
+    'favorite': True
+    },
+    'leg_extension': {
+    'push': True, 
+    'pull': False,
+    'arms': True,
+    'chest': True,
+    'back': False,
+    'core': True,
+    'legs': False,
+    'cardio': False,
+    'favorite': True
+    },
+    'dead_lift': {
+    'push': True, 
+    'pull': True,
+    'arms': True,
+    'chest': True,
+    'back': True,
+    'core': True,
+    'legs': False,
+    'cardio': False,
+    'favorite': False
+    },
+    'chin_up': {
+    'push': False, 
+    'pull': True,
+    'arms': True,
+    'chest': True,
+    'back': False,
+    'core': True,
+    'legs': False,
+    'cardio': False,
+    'favorite': True
+    },
+    'plank': {
+    'push': True, 
+    'pull': False,
+    'arms': True,
+    'chest': True,
+    'back': False,
+    'core': True,
+    'legs': False,
+    'cardio': False,
+    'favorite': True
+    },
+    'lat_pulldown': {
+    'push': False, 
+    'pull': True,
+    'arms': True,
+    'chest': True,
+    'back': True,
+    'core': True,
+    'legs': False,
+    'cardio': False,
+    'favorite': True
+    },
+    }
+    
+   
 
 
 # In[3]:
 
 
 #Print Push Exercises From Dictionary
-for e in wmt_dict['Exercise']:
-    if (wmt_dict['Push'][e] == True):
-        print (wmt_dict['Exercise'][e])
+for e in wmt_dict:
+    if (wmt_dict[e]['push'] == True):
+        print (e)
 
 
 # In[4]:
 
 
 #Print Pull Exercises From Dictionary
-for e in wmt_dict['Exercise']:
-    if (wmt_dict['Pull'][e] == True):
-        print (wmt_dict['Exercise'][e])
+for e in wmt_dict:
+    if (wmt_dict[e]['pull'] == True):
+        print (e)
 
 
 # In[5]:
 
 
 #Print Cardio Exercises From Dictionary
-for e in wmt_dict['Exercise']:
-    if (wmt_dict['Cardio'][e] == True):
-        print (wmt_dict['Exercise'][e])
+for e in wmt_dict:
+    if (wmt_dict[e]['cardio'] == True):
+        print (e)
 
 
 # In[6]:
 
 
 #Print Arm Exercises From Dictionary
-for e in wmt_dict['Exercise']:
-    if (wmt_dict['Arms'][e] == True):
-        print (wmt_dict['Exercise'][e])
+for e in wmt_dict:
+    if (wmt_dict[e]['arms'] == True):
+        print (e)
 
 
 # In[7]:
 
 
 #Print Leg Exercises From Dictionary
-for e in wmt_dict['Exercise']:
-    if (wmt_dict['Legs'][e] == True):
-        print (wmt_dict['Exercise'][e])
+for e in wmt_dict:
+    if (wmt_dict[e]['legs'] == True):
+        print (e)
 
 
 # In[8]:
 
 
 #Print Chest Exercises From Dictionary
-for e in wmt_dict['Exercise']:
-    if (wmt_dict['Chest'][e] == True):
-        print (wmt_dict['Exercise'][e])
+for e in wmt_dict:
+    if (wmt_dict[e]['chest'] == True):
+        print (e)
 
 
 # In[9]:
 
 
 #Print Back Exercises From Dictionary
-for e in wmt_dict['Exercise']:
-    if (wmt_dict['Back'][e] == True):
-        print (wmt_dict['Exercise'][e])
+for e in wmt_dict:
+    if (wmt_dict[e]['back'] == True):
+        print (e)
 
 
 # In[10]:
 
 
-#Print Back Exercises From Dictionary
-for e in wmt_dict['Exercise']:
-    if (wmt_dict['Favorite'][e] == True):
-        print (wmt_dict['Exercise'][e])
+#Print Favorite Exercises From Dictionary
+for e in wmt_dict:
+    if (wmt_dict[e]['favorite'] == True):
+        print (e)
 
 
 # In[11]:
