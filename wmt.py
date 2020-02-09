@@ -1,23 +1,22 @@
 
 # coding: utf-8
 
-# In[1]:
-
-
-import sqlite3
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.cluster import KMeans
-from sklearn.preprocessing import scale
-from customplot import *
-
 
 # In[ ]:
-
-
-class exercise():
-   def __init__(self, name, push, pull, arms, chest, back, core, legs, cardio, favorite):
+class User():
+    def __init__(self, name, height, weight, age, sex):
+        self.name = name
+        self.height = height
+        self.weight = weight
+        self.age = age
+        self.sex = sex
+        
+    def doExer(self,exercise):
+        print(self.name + " did " + exercise.name + " " + str(exercise.sets) + " x " + str(exercise.reps))
+        
+        
+class Exercise():
+    def __init__(self, name, push, pull, arms, chest, back, core, legs, favorite):
         self.name = name
         self.push = push
         self.pull = pull
@@ -26,8 +25,26 @@ class exercise():
         self.back = back
         self.core = core
         self.legs = legs
-        self.cardio = cardio
         self.favorite = favorite
+    
+class NonCardio(Exercise):
+   def __init__(self, name, push, pull, arms, chest, back, core, legs, favorite, weight, reps, sets):
+       super().__init__(name, push, pull, arms, chest, back, core, legs, favorite)
+       self.weight = weight
+       self.reps = reps
+       self.sets = sets
+   
+class Cardio(Exercise):
+    def __init__(self, distance, duration, cardio):
+        self.distance = distance
+        self.duration = duration
+        self.cardio = cardio
+        
+        
+        
+user = User('Joe', 72, 185, 24, 'male')
+pushups = NonCardio('pushups', True, False, True, True, False, True, False, False, 0, 15, 3)
+chest_press = NonCardio('chest_press', True, False, True, True, False, False, False, True, 80, 15, 3)
 
 
 # In[2]:
@@ -338,13 +355,13 @@ my_prog = {'Date':
            'Reps':
                {0: 15},
            'Weight':
-               {0: None},
+               {0: 0},
            'Speed':
-               {0: None},
+               {0: 0},
            'Distance':
-               {0: None},
+               {0: 0},
             'Duration':
-               {0: None},
+               {0: 0},
            'Difficulty':
                {0: 3},
            'Enjoyability':
@@ -378,7 +395,7 @@ def addProg(date, name, sets, reps, weight, speed, distance, duration, difficult
 # In[17]:
 
 
-addProg('02/08/2020', 'treadmill', None,None,None,0,3, 1, 3, 7)
+addProg('02/08/2020', 'treadmill', 0,0,0,0,3, 1, 3, 7)
 my_prog
 
 
