@@ -1,6 +1,7 @@
 
 # coding: utf-8
 
+from wmt import *
 
 # In[ ]:
 class User():
@@ -14,79 +15,88 @@ class User():
     def doExer(self, exercise):
         print(self.name + " did " + exercise.name + " " + str(exercise.sets) + " x " + str(exercise.reps))
 
-exer_list=[]
-        
+user = User('Joe', 72, 185, 24, 'male')
+
+
 class Exercise():
-    def __init__(self, name, push, pull, arms, chest, back, core, legs, favorite):
+    def __init__(self, name, push, pull, arms, shoulders, chest, back, core, legs, favorite):
         self.name = name
         self.push = push
         self.pull = pull
         self.arms = arms
+        self.shoulders = shoulders
         self.chest = chest
         self.back = back
         self.core = core
         self.legs = legs
         self.favorite = favorite
     
+    exer_list = []
         
     #Function to show exercises for Arms    
     def forArms():
-        for exercise in global exer_list:
+        for exercise in Exercise.exer_list:
             if exercise.arms == True:
                 return exercise
             
     #Function to show exercises for Chest    
     def forChest():
-        for exercise in exer_list:
+        for exercise in Exercise.exer_list:
             if exercise.chest == True:
                 return exercise
     
     #Function to show exercises for Legs    
     def forLegs():
-        for exercise in exer_list:
+        for exercise in Exercise.exer_list:
             if exercise.legs == True:
                 return exercise
         
     #Function to show exercises for Back    
     def forBack():
-        for exercise in exer_list:
+        for exercise in Exercise.exer_list:
             if exercise.back == True:
                 return exercise
             
     #Function to show exercises for Core    
     def forCore():
-        for exercise in exer_list:
+        for exercise in Exercise.exer_list:
             if exercise.core == True:
                 return exercise
     
     #Function to show exercises for Pulling    
     def forPull():
-        for exercise in exer_list:
+        for exercise in Exercise.exer_list:
             if exercise.pull == True:
                 return exercise
     
     #Function to show exercises for Pushing   
     def forPush():
-        for exercise in exer_list:
+        for exercise in Exercise.exer_list:
             if exercise.push == True:
                 return exercise
-            
     
+    #Function to show exercises for Shoulders
+    def forShoulders():
+        for exercise in Exercise.exer_list:
+            if exercise.shoulders == True:
+                return exercise
             
             
 class NonCardio(Exercise):
-   def __init__(self, name, push, pull, arms, chest, back, core, legs, favorite, weight, reps, sets):
-       super().__init__(name, push, pull, arms, chest, back, core, legs, favorite)
+   def __init__(self, name, push, pull, arms, shoulders, chest, back, core, legs, favorite, weight, reps, sets):
+       super().__init__(name, push, pull, arms, shoulders, chest, back, core, legs, favorite)
        self.weight = weight
        self.reps = reps
        self.sets = sets
+       self.exer_list.append(self)
        
        base_reps = reps
        base_weight = weight
        progress_counter = 1
        suggest_rep_incr = base_reps * 1.2 * progress_counter
        suggest_weight_incr = base_weight * 1.2 * progress_counter
-       
+
+     
        
 class Cardio(Exercise):
     def __init__(self, distance, duration, cardio):
@@ -100,13 +110,10 @@ class Cardio(Exercise):
         suggest_durat_incr = duration * 1.2 * progress_counter
         
         
-        
-user = User('Joe', 72, 185, 24, 'male')
-pushups = NonCardio('pushups', True, False, True, True, False, True, False, False, 0, 15, 3)
-chest_press = NonCardio('chest_press', True, False, True, True, False, False, False, True, 80, 15, 3)
+pushups = NonCardio('pushups', True, False, True, True, True, False, True, False, True, 0, 15, 3)
+chest_press = NonCardio('chest_press', True, False, True, True, True, False, False, False, True, 80, 15, 3)
 running = Cardio(3, 60, True)
 
-exer_list = [pushups, chest_press]
 
 # In[2]:
 
@@ -159,7 +166,7 @@ wmt_dict = {'pushup' : {
     'push': True, 
     'pull': False,
     'arms': True,
-    'chest': True,
+    'chest': False,
     'back': False,
     'core': True,
     'legs': False,
