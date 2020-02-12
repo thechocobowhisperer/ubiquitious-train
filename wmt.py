@@ -1,7 +1,6 @@
 
 # coding: utf-8
-
-from wmt import *
+import pandas as pd
 
 # In[ ]:
 class User():
@@ -30,68 +29,111 @@ class Exercise():
         self.core = core
         self.legs = legs
         self.favorite = favorite
+        self.exer_list.append(self)
+        
     
     exer_list = []
-        
+    arms_list = []
+    chest_list = []
+    shoulders_list = []
+    back_list = []
+    core_list = []
+    legs_list = []
+    
+    
     #Function to show exercises for Arms    
     def forArms():
+        Exercise.arms_list = []
         for exercise in Exercise.exer_list:
             if exercise.arms == True:
-                return exercise
-            
+                Exercise.arms_list.append(exercise)
+                Exercise.arms_list = list(set(Exercise.arms_list))
+        for item in Exercise.arms_list:
+            print(item.name)
+    
     #Function to show exercises for Chest    
     def forChest():
+        Exercise.chest_list = []
         for exercise in Exercise.exer_list:
             if exercise.chest == True:
-                return exercise
+                Exercise.chest_list.append(exercise)
+                Exercise.chest_list = list(set(Exercise.chest_list))
+        for item in Exercise.chest_list:
+            print(item.name)
+    #Function to show exercises for Shoulders
+    def forShoulders():
+        Exercise.shoulders_list = []
+        for exercise in Exercise.exer_list:
+            if exercise.shoulders == True:
+                Exercise.shoulders_list.append(exercise)
+                Exercise.shoulders_list = list(set(Exercise.shoulders_list))
+        for item in Exercise.shoulders_list:
+            print(item.name)
     
     #Function to show exercises for Legs    
     def forLegs():
+        Exercise.legs_list = []
         for exercise in Exercise.exer_list:
             if exercise.legs == True:
-                return exercise
+                Exercise.legs_list.append(exercise)
+                Exercise.legs_list = list(set(Exercise.legs_list))
+        for item in Exercise.legs_list:
+            print(item.name)
         
     #Function to show exercises for Back    
     def forBack():
+        Exercise.chest_list = []
         for exercise in Exercise.exer_list:
             if exercise.back == True:
-                return exercise
+                Exercise.back_list.append(exercise)
+                Exercise.back_list = list(set(Exercise.back_list))
+        for item in Exercise.back_list:
+            print(item.name)
             
     #Function to show exercises for Core    
     def forCore():
+        Exercise.core_list = []
         for exercise in Exercise.exer_list:
             if exercise.core == True:
-                return exercise
+                Exercise.core_list.append(exercise)
+                Exercise.core_list = list(set(Exercise.core_list))
+        for item in Exercise.core_list:
+            print(item.name)
     
-    #Function to show exercises for Pulling    
-    def forPull():
-        for exercise in Exercise.exer_list:
-            if exercise.pull == True:
-                return exercise
+    # #Function to show exercises for Pulling    
+    # def forPull():
+    #     for exercise in Exercise.exer_list:
+    #         if exercise.pull == True:
+    #             return exercise
     
-    #Function to show exercises for Pushing   
-    def forPush():
-        for exercise in Exercise.exer_list:
-            if exercise.push == True:
-                return exercise
+    # #Function to show exercises for Pushing   
+    # def forPush():
+    #     for exercise in Exercise.exer_list:
+    #         if exercise.push == True:
+    #             return exercise
     
-    #Function to show exercises for Shoulders
-    def forShoulders():
-        for exercise in Exercise.exer_list:
-            if exercise.shoulders == True:
-                return exercise
+    
             
             
-class NonCardio(Exercise):
+class RepSet(Exercise):
    def __init__(self, name, push, pull, arms, shoulders, chest, back, core, legs, favorite, weight, reps, sets):
        super().__init__(name, push, pull, arms, shoulders, chest, back, core, legs, favorite)
        self.weight = weight
        self.reps = reps
        self.sets = sets
-       self.exer_list.append(self)
-       
+       progress_counter = 0
        base_reps = reps
        base_weight = weight
+       progress_counter = 1
+       suggest_rep_incr = base_reps * 1.2 * progress_counter
+       suggest_weight_incr = base_weight * 1.2 * progress_counter
+       
+   
+class Stretch(Exercise):
+    def __init__(self, name, push, pull, arms, shoulders, chest, back, core, legs, favorite, duration):
+       super().__init__(name, push, pull, arms, shoulders, chest, back, core, legs, favorite)
+       self.duration = duration
+       progress_counter = 0
        progress_counter = 1
        suggest_rep_incr = base_reps * 1.2 * progress_counter
        suggest_weight_incr = base_weight * 1.2 * progress_counter
@@ -110,9 +152,15 @@ class Cardio(Exercise):
         suggest_durat_incr = duration * 1.2 * progress_counter
         
         
-pushups = NonCardio('pushups', True, False, True, True, True, False, True, False, True, 0, 15, 3)
-chest_press = NonCardio('chest_press', True, False, True, True, True, False, False, False, True, 80, 15, 3)
-running = Cardio(3, 60, True)
+# pushups = RepSet('pushups', True, False, True, True, True, False, True, False, True, 0, 15, 3)
+# chest_press = RepSet('chest_press', True, False, True, True, True, False, False, False, True, 80, 15, 3)
+# bicep_stretch = Exercise('bicep_stretch', False, True, False, True, True, False, False, False, False)
+
+
+
+
+
+# running = Cardio(3, 60, True)
 
 
 # In[2]:
